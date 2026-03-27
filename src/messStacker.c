@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdint.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include "messStacker.h"
@@ -7,27 +8,24 @@
 #define SIZE_MAX_DATA 57
 #define SIZE_STACK 30
 
-typedef struct st_message {
-    unsigned int cmd;
-    char* data; // malloc(SIZE_MAX_DATA*sizeof(char))
-    unsigned int size;
-    unsigned int checksum;
+typedef struct {
+    uint8_t cmd;
+    char data[SIZE_MAX_DATA];
+    uint8_t size;
+    uint8_t checksum;
 } Message;
 
-Message stackMess;
-stackMess.data = malloc(SIZE_STACK*sizeof(char));
+Message stackMess[SIZE_STACK];
 
 int lastPos = -1;
-
 int curPos = 0;
-
 int messCount = 0;
 
 char* getMessStackerVersion(){
     return MESS_STAKER_VERSION;
 }
 
-bool sendMessage(unsigned int cmd, char* data ,unsigned int size){
+bool sendMessage(uint8_t cmd, char* data ,uint8_t size){
     if (messCount >= SIZE_STACK) {
         return false;
     }
@@ -37,7 +35,7 @@ bool sendMessage(unsigned int cmd, char* data ,unsigned int size){
     stackMess[lastPos].cmd = cmd;
     stackMess[lastPos].size = size;
 
-    for (unsigned int i = 0; i < size; i++) {
+    for (uint8_t i = 0; i < size; i++) {
         stackMess[lastPos].data[i] = data[i];
     }
 
@@ -56,15 +54,15 @@ bool nextMessage(){
 
 }
 
-unsigned int curMessageCmd(){
+uint8_t curMessageCmd(){
 
 }
 
-unsigned int curMessageSize(){
+uint8_t curMessageSize(){
 
 }
 
-unsigned int curMessageChecksum(){
+uint8_t curMessageChecksum(){
 
 }
 
@@ -72,10 +70,10 @@ bool curMessageData(char* buff, int lengthMax){
 
 }
 
-unsigned int checksumMessage(unsigned int cmd, char* data ,unsigned int size){
-    unsigned int sum = 0;
+uint8_t checksumMessage(uint8_t cmd, char* data ,uint8_t size){
+    uint8_t sum = 0;
     sum += cmd;
-    for (unsigned int i = 0; i < size; i++) {
+    for (uint8_t i = 0; i < size; i++) {
         sum += (unsigned int)data[i];
     }
 

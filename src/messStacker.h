@@ -1,23 +1,26 @@
 #ifndef MESS_STACKER
 #define MESS_STACKER
+#include <stdio.h>
+#include <stdint.h>
+#include <stdlib.h>
 #include <stdbool.h>
 
 char* getMessStackerVersion();
 
-bool sendMessage(int cmd, char* data ,int size);
+bool sendMessage(uint8_t cmd, char* data ,uint8_t size);
 
 bool haveMessage(); 
 
 bool nextMessage();
 
-int curMessageCmd();
+uint8_t curMessageCmd();
 
-int curMessageSize();
+uint8_t curMessageSize();
 
-int curMessageChecksum();
+uint8_t curMessageChecksum();
 
 bool curMessageData(char* buff, int lengthMax);
 
-int checksumMessage(int cmd, char* data ,int size);
+uint8_t checksumMessage(uint8_t cmd, char* data ,uint8_t size);
 
 #endif
