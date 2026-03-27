@@ -30,3 +30,5 @@ sendMessage: Son action est de placer le message décrit en argument dans la fil
 curMessageCmd, curMessageSize, et curMessageChecksum: Leurs rôles consistent à fournir respectivement les valeurs cmd, size et checksum du message courant.
 
 curMessageData: Elle doit remplir le tableau buff donné en argument avec les n premières cases du tableau data du message courant (n étant la valeur size du message courant). Puis, après avoir fait ça, elle retourne true.
+
+nextMessage: Celle-ci doit permettre de passer au message suivant dans la file. Ce qui consiste à libérer la case du message courant dans le tableau stackMess en avançant la positon curPos.
