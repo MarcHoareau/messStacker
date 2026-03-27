@@ -8,10 +8,10 @@
 #define SIZE_STACK 30
 
 typedef struct st_message {
-    int cmd;
+    unsigned int cmd;
     char* data; // malloc(SIZE_MAX_DATA*sizeof(char))
-    int size;
-    int checksum;
+    unsigned int size;
+    unsigned int checksum;
 } Message;
 
 Message stackMess;
@@ -27,7 +27,7 @@ char* getMessStackerVersion(){
     return MESS_STAKER_VERSION;
 }
 
-bool sendMessage(int cmd, char* data ,int size){
+bool sendMessage(unsigned int cmd, char* data ,unsigned int size){
 
 }
 
@@ -40,15 +40,15 @@ bool nextMessage(){
 
 }
 
-int curMessageCmd(){
+unsigned int curMessageCmd(){
 
 }
 
-int curMessageSize(){
+unsigned int curMessageSize(){
 
 }
 
-int curMessageChecksum(){
+unsigned int curMessageChecksum(){
 
 }
 
@@ -56,6 +56,12 @@ bool curMessageData(char* buff, int lengthMax){
 
 }
 
-int checksumMessage(int cmd, char* data ,int size){
+unsigned int checksumMessage(unsigned int cmd, char* data ,unsigned int size){
+    unsigned int sum = 0;
+    sum += cmd;
+    for (unsigned int i = 0; i < size; i++) {
+        sum += (unsigned int)data[i];
+    }
 
+    return sum;
 }

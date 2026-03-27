@@ -23,3 +23,5 @@ Ce projet est disponible a https://github.com/MarcHoareau/messStacker.git
 
 haveMessage: Son rôle est de permettre de savoir s’il existe un message dans
 la file. 
+
+checksumMessage: Cette fonction sert à calculer un checksum sur les valeurs cmd et data qui lui sont fournies en argument.
