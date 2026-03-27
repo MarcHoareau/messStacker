@@ -28,12 +28,28 @@ char* getMessStackerVersion(){
 }
 
 bool sendMessage(unsigned int cmd, char* data ,unsigned int size){
+    if (messCount >= SIZE_STACK) {
+        return false;
+    }
 
+    lastPos = (lastPos + 1) % SIZE_STACK;
+
+    stackMess[lastPos].cmd = cmd;
+    stackMess[lastPos].size = size;
+
+    for (unsigned int i = 0; i < size; i++) {
+        stackMess[lastPos].data[i] = data[i];
+    }
+
+    stackMess[lastPos].checksum = checksumMessage(cmd, data, size);
+
+    messCount++;
+
+    return true;
 }
 
 bool haveMessage(){
-    if(messCount>=1) return TRUE;
-    else return FALSE;
+    return messCount > 0;
 } 
 
 bool nextMessage(){

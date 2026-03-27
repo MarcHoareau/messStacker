@@ -21,7 +21,8 @@ Ce projet est disponible a https://github.com/MarcHoareau/messStacker.git
 
 ## L'API
 
-haveMessage: Son rôle est de permettre de savoir s’il existe un message dans
-la file. 
+haveMessage: Son rôle est de permettre de savoir s’il existe un message dans la file. 
 
 checksumMessage: Cette fonction sert à calculer un checksum sur les valeurs cmd et data qui lui sont fournies en argument.
+
+sendMessage: Son action est de placer le message décrit en argument dans la file.
