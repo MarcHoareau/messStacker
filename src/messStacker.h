@@ -19,7 +19,7 @@ uint8_t curMessageSize();
 
 uint8_t curMessageChecksum();
 
-bool curMessageData(char* buff, int lengthMax);
+bool curMessageData(char* buff, uint8_t lengthMax);
 
 uint8_t checksumMessage(uint8_t cmd, char* data ,uint8_t size);
 

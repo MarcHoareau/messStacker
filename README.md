@@ -28,3 +28,5 @@ checksumMessage: Cette fonction sert à calculer un checksum sur les valeurs cmd
 sendMessage: Son action est de placer le message décrit en argument dans la file.
 
 curMessageCmd, curMessageSize, et curMessageChecksum: Leurs rôles consistent à fournir respectivement les valeurs cmd, size et checksum du message courant.
+
+curMessageData: Elle doit remplir le tableau buff donné en argument avec les n premières cases du tableau data du message courant (n étant la valeur size du message courant). Puis, après avoir fait ça, elle retourne true.

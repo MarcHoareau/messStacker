@@ -69,8 +69,13 @@ uint8_t curMessageChecksum() {
     return stackMess[curPos].checksum;
 }
 
-bool curMessageData(char* buff, int lengthMax){
-
+bool curMessageData(char* buff, uint8_t lengthMax){
+    if (!haveMessage() || lengthMax < stackMess[curPos].size) return false;
+    for (uint8_t i = 0; i < stackMess[curPos].size; i++) {
+        buff[i] = stackMess[curPos].data[i];
+    }
+    buff[stackMess[curPos].size] = '\0';
+    return true;
 }
 
 uint8_t checksumMessage(uint8_t cmd, char* data ,uint8_t size){
@@ -79,6 +84,5 @@ uint8_t checksumMessage(uint8_t cmd, char* data ,uint8_t size){
     for (uint8_t i = 0; i < size; i++) {
         sum += (uint8_t)data[i];
     }
-
     return sum;
 }
