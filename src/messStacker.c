@@ -54,16 +54,19 @@ bool nextMessage(){
 
 }
 
-uint8_t curMessageCmd(){
-
+uint8_t curMessageCmd() {
+    if (!haveMessage()) return 0;
+    return stackMess[curPos].cmd;
 }
 
-uint8_t curMessageSize(){
-
+uint8_t curMessageSize() {
+    if (!haveMessage()) return 0;
+    return stackMess[curPos].size;
 }
 
-uint8_t curMessageChecksum(){
-
+uint8_t curMessageChecksum() {
+    if (!haveMessage()) return 0;
+    return stackMess[curPos].checksum;
 }
 
 bool curMessageData(char* buff, int lengthMax){
@@ -74,7 +77,7 @@ uint8_t checksumMessage(uint8_t cmd, char* data ,uint8_t size){
     uint8_t sum = 0;
     sum += cmd;
     for (uint8_t i = 0; i < size; i++) {
-        sum += (unsigned int)data[i];
+        sum += (uint8_t)data[i];
     }
 
     return sum;
