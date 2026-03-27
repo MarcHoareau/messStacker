@@ -26,3 +26,5 @@ haveMessage: Son rôle est de permettre de savoir s’il existe un message dans 
 checksumMessage: Cette fonction sert à calculer un checksum sur les valeurs cmd et data qui lui sont fournies en argument.
 
 sendMessage: Son action est de placer le message décrit en argument dans la file.
+
+curMessageCmd, curMessageSize, et curMessageChecksum: Leurs rôles consistent à fournir respectivement les valeurs cmd, size et checksum du message courant.
