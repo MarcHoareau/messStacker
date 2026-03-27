@@ -51,7 +51,10 @@ bool haveMessage(){
 } 
 
 bool nextMessage(){
-
+    if (!haveMessage()) return false;
+    curPos = (curPos + 1) % SIZE_STACK;
+    messCount--;
+    return true;
 }
 
 uint8_t curMessageCmd() {
